@@ -1,0 +1,51 @@
+---
+title: 'Escribir contenido en Markdown y MDX'
+description: 'Qué diferencia hay entre Markdown y MDX y cómo usar componentes dentro de un artículo.'
+pubDate: 'Oct 28 2026'
+heroImage: '../../assets/blog-placeholder-1.jpg'
+---
+
+Uno de los motivos para elegir Astro para un blog es poder escribir en Markdown. El contenido queda en archivos de texto, se versiona con Git y no depende de un editor externo.
+
+## Markdown, lo esencial
+
+Un artículo es un archivo con metadatos al principio y texto después:
+
+```markdown
+---
+title: 'Mi artículo'
+pubDate: 'Oct 28 2026'
+---
+
+## Un encabezado
+
+Texto en **negrita**, *cursiva* y `código`.
+```
+
+Con Markdown puedes escribir listas, citas, tablas y bloques de código sin salir del teclado. Para un blog, cubre casi todas las necesidades.
+
+## Cuándo usar MDX
+
+MDX es Markdown con superpoderes: permite importar componentes y usar JSX dentro del contenido. La extensión del archivo cambia a `.mdx` y la integración `@astrojs/mdx` se encarga del resto.
+
+Esto resulta útil cuando quieres insertar una alerta, una galería o un pequeño componente interactivo en medio de un texto. Por ejemplo, este blog importa `HeaderLink` directamente:
+
+import HeaderLink from '../../components/HeaderLink.astro';
+
+<HeaderLink href="#" onclick="alert('Hecho')">
+	Componente Astro insertado en MDX
+</HeaderLink>
+
+## Precauciones
+
+Un par de cosas que conviene recordar:
+
+- Los componentes de MDX se renderizan como HTML estático salvo que añadas una directiva `client:*`.
+- Los bloques de código con tres barras inclinadas se resaltan automáticamente si indicas el lenguaje.
+- Las rutas internas deben construirse con `import.meta.env.BASE_URL` si el sitio se publica bajo un subdirectorio.
+
+## Recursos
+
+- [Sintaxis de MDX](https://mdxjs.com/docs/what-is-mdx/)
+- [Markdown y MDX en Astro](https://docs.astro.build/en/guides/markdown-content/)
+- [Directivas del cliente](https://docs.astro.build/en/reference/directives-reference/#client-directives)

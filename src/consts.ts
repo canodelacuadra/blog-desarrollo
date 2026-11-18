@@ -3,3 +3,9 @@
 
 export const SITE_TITLE = 'Pagina de canodelacuadra';
 export const SITE_DESCRIPTION = 'Push from Sanse';
+
+export function withBase(path: string): string {
+	const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+	const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+	return `${base}${normalizedPath}` || '/';
+}

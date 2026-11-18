@@ -1,63 +1,53 @@
-# Astro Starter Kit: Blog
+# Blog de desarrollo web con Astro
 
-```sh
-npm create astro@latest -- --template blog
-```
+Sitio personal sobre desarrollo web construido con el starter oficial de Astro y publicado en GitHub Pages.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+URL pública: https://canodelacuadra.github.io/blog-astro-2/
 
-Features:
+## Características
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- Estilos mínimos y fáciles de personalizar.
+- Metadatos SEO, URLs canónicas y datos Open Graph.
+- Sitemap y feed RSS.
+- Contenido en Markdown y MDX con esquema validado.
+- Despliegue automático con GitHub Actions.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura del proyecto
 
 ```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+public/                 archivos estáticos (favicons, .nojekyll)
+src/
+├── assets/             imágenes y fuentes
+├── components/         componentes reutilizables
+├── content/blog/       artículos del blog
+├── layouts/            plantillas compartidas
+├── pages/              páginas y rutas
+└── styles/             CSS global
+astro.config.mjs        configuración de Astro
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro busca archivos `.astro`, `.md` y `.mdx` en `src/pages/`. Cada archivo se convierte en una ruta según su nombre. El contenido de `src/content/blog/` se recupera con `getCollection()` y su frontmatter se valida en `src/content.config.ts`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Comandos
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+| Comando | Acción |
+| :--- | :--- |
+| `npm install` | Instala las dependencias. |
+| `npm run dev` | Arranca el servidor de desarrollo en `localhost:4321`. |
+| `npm run build` | Genera el sitio en `./dist/`. |
+| `npm run preview` | Previsualiza el resultado de `build`. |
+| `npm run astro ...` | Ejecuta comandos de la CLI de Astro, como `astro check`. |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Despliegue en GitHub Pages
 
-## 🧞 Commands
+1. El repositorio debe tener configurado `site: 'https://canodelacuadra.github.io'` y `base: '/blog-astro-2'` en `astro.config.mjs`.
+2. El workflow `.github/workflows/deploy.yml` compila y publica el sitio en cada push a `master`.
+3. En GitHub, entra en **Settings → Pages** y selecciona **GitHub Actions** como origen.
+4. Todos los enlaces internos se construyen con la función `withBase()` de `src/consts.ts` para que funcionen con el subdirectorio `/blog-astro-2`.
 
-All commands are run from the root of the project, from a terminal:
+Para un dominio propio, cambia `site` por tu dominio, elimina `base` y añade un archivo `public/CNAME` con el dominio.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Más información
 
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- [Documentación de Astro](https://docs.astro.build)
+- [Guía de despliegue en GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
