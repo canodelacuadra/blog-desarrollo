@@ -3,7 +3,7 @@ title: 'Publicar un blog Astro en GitHub Pages'
 description: 'Pasos para desplegar un sitio Astro en GitHub Pages con GitHub Actions.'
 pubDate: 'Oct 20 2026'
 updatedDate: 'Nov 18 2026'
-heroImage: '../../assets/blog-placeholder-5.jpg'
+heroImage: '../../assets/blog-github-pages.jpg'
 ---
 
 GitHub Pages permite publicar un sitio estático directamente desde un repositorio. Con Astro, el método recomendado es un flujo de GitHub Actions que compila el proyecto y sube el resultado.

@@ -2,7 +2,7 @@
 title: 'Anatomía de un proyecto Astro'
 description: 'Recorrido por las carpetas de un proyecto Astro y qué se guarda en cada una.'
 pubDate: 'Nov 04 2026'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/blog-estructura.jpg'
 ---
 
 Cuando abres por primera vez un proyecto Astro, la estructura puede parecer excesiva. En realidad cada carpeta tiene una responsabilidad muy clara. Este es el esquema básico:

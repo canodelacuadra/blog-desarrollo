@@ -5,7 +5,8 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2>
+		<h2 class="brand">
+			<img src={withBase('/logo.svg')} width="28" height="28" alt="" />
 			<a href={withBase('/')}>{`${SITE_TITLE} | ${SITE_DESCRIPTION}`}</a>
 		</h2>
 		<div class="internal-links">
@@ -24,7 +25,21 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	h2 {
 		margin: 0;
-		font-size: 1em;
+		font-size: 0.8em;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.brand img {
+		display: block;
+	}
+
+	.brand a {
+		padding: 0;
 	}
 
 	h2 a,

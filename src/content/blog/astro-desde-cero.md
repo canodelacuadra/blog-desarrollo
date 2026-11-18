@@ -3,7 +3,7 @@ title: 'Astro desde cero: qué es y cuándo usarlo'
 description: 'Una introducción práctica a Astro, el generador de sitios estáticos que usa este blog.'
 pubDate: 'Nov 10 2026'
 updatedDate: 'Nov 18 2026'
-heroImage: '../../assets/blog-placeholder-4.jpg'
+heroImage: '../../assets/blog-astro.jpg'
 ---
 
 Astro es un generador de sitios estáticos pensado para contenido. Su idea principal es sencilla: renderiza los componentes en el momento de la compilación y envía al navegador solo HTML y CSS. Si una parte de la página necesita interactividad, puedes añadir JavaScript únicamente para esa parte.

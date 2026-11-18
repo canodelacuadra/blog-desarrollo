@@ -2,7 +2,7 @@
 title: 'Bienvenido: por qué un blog de desarrollo web'
 description: 'Presentación del blog y de las cosas que voy a contar aquí.'
 pubDate: 'Nov 18 2026'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/blog-bienvenida.jpg'
 ---
 
 Toda persona que aprende desarrollo web acaba acumulando preguntas: por qué una maquetación se rompe en móvil, cuándo conviene usar un framework o cómo se publica un sitio sin complicaciones. Este blog es mi forma de responder a esas preguntas y dejar constancia de lo que voy aprendiendo.
