@@ -21,7 +21,17 @@ const dateFormatter = new Intl.DateTimeFormat('es-ES', {
 <!doctype html>
 <html lang="es">
 	<head>
-		<BaseHead title={`Blog | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`Blog | ${SITE_TITLE}`}
+			description={SITE_DESCRIPTION}
+			schema="blog"
+			posts={posts.map((post) => ({
+				title: post.data.title,
+				url: new URL(withBase(`/blog/${post.id}/`), Astro.site).href,
+				image: post.data.heroImage,
+				pubDate: post.data.pubDate,
+			}))}
+		/>
 		<style>
 			main {
 				width: 860px;

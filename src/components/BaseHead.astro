@@ -7,20 +7,26 @@ import FallbackImage from '../assets/blog-placeholder-1.jpg';
 import { SITE_TITLE, withBase } from '../consts';
 import { Font } from 'astro:assets';
 import JsonLd from './JsonLd.astro';
-import { getBlogPostingSchema, getPersonSchema } from '../utils/structuredData';
+import { getBlogPostingSchema, getItemListSchema, getPersonSchema } from '../utils/structuredData';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
-	schema?: 'article' | 'person';
+	schema?: 'article' | 'person' | 'blog';
 	pubDate?: Date;
 	updatedDate?: Date;
+	posts?: Array<{
+		title: string;
+		url: string;
+		image?: ImageMetadata;
+		pubDate: Date;
+	}>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage, schema, pubDate, updatedDate } = Astro.props;
+const { title, description, image = FallbackImage, schema, pubDate, updatedDate, posts = [] } = Astro.props;
 const imageUrl = new URL(image.src, Astro.url).href;
 ---
 
@@ -73,3 +79,15 @@ const imageUrl = new URL(image.src, Astro.url).href;
 	/>
 )}
 {schema === 'person' && <JsonLd schema={getPersonSchema(description)} />}
+{schema === 'blog' && (
+	<JsonLd
+		schema={getItemListSchema(
+			posts.map((post) => ({
+				title: post.title,
+				url: post.url,
+				imageUrl: new URL((post.image ?? FallbackImage).src, Astro.url).href,
+				pubDate: post.pubDate,
+			})),
+		)}
+	/>
+)}

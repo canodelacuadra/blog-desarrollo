@@ -54,3 +54,31 @@ export function getPersonSchema(description: string): Record<string, unknown> {
 		knowsAbout: ['Astro', 'HTML', 'CSS', 'JavaScript'],
 	};
 }
+
+interface ListedPost {
+	title: string;
+	url: string;
+	imageUrl: string;
+	pubDate: Date;
+}
+
+export function getItemListSchema(posts: ListedPost[]): Record<string, unknown> {
+	return {
+		'@context': CONTEXT,
+		'@type': 'ItemList',
+		numberOfItems: posts.length,
+		itemListElement: posts.map((post, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: post.title,
+			url: post.url,
+			item: {
+				'@type': 'BlogPosting',
+				headline: post.title,
+				url: post.url,
+				image: [post.imageUrl],
+				datePublished: post.pubDate.toISOString(),
+			},
+		})),
+	};
+}
