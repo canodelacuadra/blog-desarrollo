@@ -15,7 +15,7 @@ Necesitas dos valores en `astro.config.mjs`:
 ```js
 export default defineConfig({
   site: 'https://canodelacuadra.github.io',
-  base: '/blog-astro-2',
+  base: '/blog-desarrollo',
 });
 ```
 

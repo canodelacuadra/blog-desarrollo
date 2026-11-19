@@ -7,7 +7,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://canodelacuadra.github.io',
-	base: '/blog-astro-2',
+	base: '/blog-desarrollo',
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{

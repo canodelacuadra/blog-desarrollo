@@ -2,7 +2,7 @@
 
 Sitio personal sobre desarrollo web construido con el starter oficial de Astro y publicado en GitHub Pages.
 
-URL pública: https://canodelacuadra.github.io/blog-astro-2/
+URL pública: https://canodelacuadra.github.io/blog-desarrollo/
 
 ## Características
 
@@ -40,10 +40,10 @@ Astro busca archivos `.astro`, `.md` y `.mdx` en `src/pages/`. Cada archivo se c
 
 ## Despliegue en GitHub Pages
 
-1. El repositorio debe tener configurado `site: 'https://canodelacuadra.github.io'` y `base: '/blog-astro-2'` en `astro.config.mjs`.
+1. El repositorio debe tener configurado `site: 'https://canodelacuadra.github.io'` y `base: '/blog-desarrollo'` en `astro.config.mjs`.
 2. El workflow `.github/workflows/deploy.yml` compila y publica el sitio en cada push a `master`.
 3. En GitHub, entra en **Settings → Pages** y selecciona **GitHub Actions** como origen.
-4. Todos los enlaces internos se construyen con la función `withBase()` de `src/consts.ts` para que funcionen con el subdirectorio `/blog-astro-2`.
+4. Todos los enlaces internos se construyen con la función `withBase()` de `src/consts.ts` para que funcionen con el subdirectorio `/blog-desarrollo`.
 
 Para un dominio propio, cambia `site` por tu dominio, elimina `base` y añade un archivo `public/CNAME` con el dominio.
 
