@@ -7,6 +7,8 @@ URL pública: https://canodelacuadra.github.io/blog-desarrollo/
 ## Características
 
 - Estilos mínimos y fáciles de personalizar.
+- Iconos SVG con `astro-icon` y Lucide, generados en el build sin JavaScript en el cliente.
+- Listado de artículos en formato lista, con fecha, descripción y enlace.
 - Metadatos SEO, URLs canónicas y datos Open Graph.
 - Sitemap y feed RSS.
 - Contenido en Markdown y MDX con esquema validado.
@@ -18,11 +20,13 @@ URL pública: https://canodelacuadra.github.io/blog-desarrollo/
 public/                 archivos estáticos (favicons, .nojekyll)
 src/
 ├── assets/             imágenes y fuentes
-├── components/         componentes reutilizables
+├── components/         componentes reutilizables (incluye Icon.astro)
 ├── content/blog/       artículos del blog
+├── icons/              iconos locales opcionales para astro-icon
 ├── layouts/            plantillas compartidas
 ├── pages/              páginas y rutas
-└── styles/             CSS global
+├── styles/             CSS global
+└── utils/              utilidades como el tiempo de lectura
 astro.config.mjs        configuración de Astro
 ```
 

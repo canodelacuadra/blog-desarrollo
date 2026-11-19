@@ -1,18 +1,22 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Icon from './Icon.astro';
 ---
 
 <header>
 	<nav>
 		<h2 class="brand">
 			<img src={withBase('/logo.svg')} width="28" height="28" alt="" />
-			<a href={withBase('/')}>{`${SITE_TITLE} | ${SITE_DESCRIPTION}`}</a>
+			<a href={withBase('/')}>
+				{SITE_TITLE}
+				<span class="tagline">| {SITE_DESCRIPTION}</span>
+			</a>
 		</h2>
 		<div class="internal-links">
-			<HeaderLink href={withBase('/')}>Inicio</HeaderLink>
-			<HeaderLink href={withBase('/about')}>Acerca de mí</HeaderLink>
-			<HeaderLink href={withBase('/blog')}>Blog</HeaderLink>
+			<HeaderLink href={withBase('/')}><Icon name="lucide:house" size={16} /> Inicio</HeaderLink>
+			<HeaderLink href={withBase('/blog')}><Icon name="lucide:newspaper" size={16} /> Blog</HeaderLink>
+			<HeaderLink href={withBase('/about')}><Icon name="lucide:user-round" size={16} /> Acerca de mí</HeaderLink>
 		</div>
 	</nav>
 </header>
@@ -60,5 +64,37 @@ import HeaderLink from './HeaderLink.astro';
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	.tagline {
+		color: rgb(var(--gray));
+		font-weight: 400;
+	}
+	@media (max-width: 720px) {
+		header {
+			padding: 0 0.75em;
+		}
+		nav {
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 0 0.25em;
+			padding-top: 0.35em;
+		}
+		.brand {
+			justify-content: center;
+			width: 100%;
+		}
+		.tagline {
+			display: none;
+		}
+		.internal-links {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+		}
+		nav a {
+			padding: 0.5em;
+			font-size: 0.9em;
+		}
 	}
 </style>

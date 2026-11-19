@@ -21,7 +21,9 @@ const isActive = hrefPath === currentPath || hrefPath === normalize(withBase(`/$
 </a>
 <style>
 	a {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
 		text-decoration: none;
 	}
 	a.active {

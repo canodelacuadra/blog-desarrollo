@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Icon from '../components/Icon.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 ---
 
@@ -9,6 +10,35 @@ import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.starter-links {
+				display: grid;
+				gap: 0.6rem;
+				margin: 1.5rem 0 2rem;
+				padding: 0;
+				list-style: none;
+			}
+			.starter-links a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				width: 100%;
+				padding: 0.65rem 0.95rem;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 10px;
+				color: rgb(var(--gray-dark));
+				text-decoration: none;
+				transition:
+					background-color 0.2s ease,
+					border-color 0.2s ease,
+					color 0.2s ease;
+			}
+			.starter-links a:hover {
+				border-color: var(--accent);
+				background-color: var(--accent-soft);
+				color: var(--accent);
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
@@ -25,10 +55,10 @@ import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 				escribe en Markdown o MDX.
 			</p>
 			<p>Si acabas de llegar, quizá te interese empezar por aquí:</p>
-			<ul>
-				<li><a href={withBase('/blog')}>Leer todos los artículos</a></li>
-				<li><a href={withBase('/about')}>Saber un poco más sobre mí</a></li>
-				<li><a href={withBase('/rss.xml')}>Suscribirme por RSS</a></li>
+			<ul class="starter-links">
+				<li><a href={withBase('/blog')}><Icon name="lucide:book-open" size={18} /> Leer todos los artículos</a></li>
+				<li><a href={withBase('/about')}><Icon name="lucide:user-round" size={18} /> Saber un poco más sobre mí</a></li>
+				<li><a href={withBase('/rss.xml')}><Icon name="lucide:rss" size={18} /> Suscribirme por RSS</a></li>
 			</ul>
 			<p>
 				Puedes editar esta página en <code>src/pages/index.astro</code> y personalizar el aspecto

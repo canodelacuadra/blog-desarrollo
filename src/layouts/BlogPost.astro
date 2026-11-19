@@ -5,12 +5,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { readingTime?: number };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="es">
 	<head>
 		<BaseHead title={title} description={description} image={heroImage} />
@@ -45,12 +48,37 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
-			.date {
+			.post-meta {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5rem 1.25rem;
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
 			}
+			.meta-item {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				font-size: 0.9rem;
+			}
 			.last-updated-on {
+				margin: 0 0 0.5em;
+				color: rgb(var(--gray));
+				font-size: 0.85rem;
 				font-style: italic;
+			}
+			.post-nav {
+				margin-top: 2.5rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid rgb(var(--gray-light));
+			}
+			.post-nav a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				font-size: 0.9rem;
+				text-decoration: none;
 			}
 		</style>
 	</head>
@@ -64,18 +92,33 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				</div>
 				<div class="prose">
 					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<div class="last-updated-on">
-									Última actualización: <FormattedDate date={updatedDate} />
-								</div>
+						<div class="post-meta">
+							<span class="meta-item">
+								<Icon name="lucide:calendar-days" size={16} />
+								<FormattedDate date={pubDate} />
+							</span>
+							{readingTime && (
+								<span class="meta-item">
+									<Icon name="lucide:clock" size={16} />
+									{readingTime} min de lectura
+								</span>
 							)}
 						</div>
+						{updatedDate && (
+							<p class="last-updated-on">
+								Última actualización: <FormattedDate date={updatedDate} />
+							</p>
+						)}
 						<h1>{title}</h1>
 						<hr />
 					</div>
 					<slot />
+					<nav class="post-nav" aria-label="Navegación del artículo">
+						<a href={withBase('/blog')}>
+							<Icon name="lucide:arrow-left" size={16} />
+							Volver al blog
+						</a>
+					</nav>
 				</div>
 			</article>
 		</main>

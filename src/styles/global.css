@@ -4,9 +4,16 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
+	--accent-soft: rgba(35, 55, 255, 0.08);
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -70,6 +77,12 @@ a {
 a:hover {
 	color: var(--accent);
 }
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
 p {
 	margin-bottom: 1em;
 }
@@ -99,6 +112,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	overflow-x: auto;
 }
 pre > code {
 	all: unset;
@@ -119,6 +133,18 @@ hr {
 	}
 	main {
 		padding: 1em;
+	}
+	h1 {
+		font-size: 2.2em;
+	}
+	h2 {
+		font-size: 1.9em;
+	}
+	h3 {
+		font-size: 1.55em;
+	}
+	h4 {
+		font-size: 1.3em;
 	}
 }
 
