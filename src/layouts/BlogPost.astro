@@ -8,15 +8,25 @@ import Header from '../components/Header.astro';
 import Icon from '../components/Icon.astro';
 import { withBase } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'] & { readingTime?: number };
+type Props = CollectionEntry<'blog'>['data'] & {
+	readingTime?: number;
+	schema?: 'article' | 'person';
+};
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime, schema } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
+		<BaseHead
+			title={title}
+			description={description}
+			image={heroImage}
+			schema={schema}
+			pubDate={pubDate}
+			updatedDate={updatedDate}
+		/>
 		<style>
 			main {
 				width: calc(100% - 2em);

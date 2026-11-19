@@ -1,0 +1,10 @@
+---
+interface Props {
+	schema: Record<string, unknown>;
+}
+
+// Escapar `<` evita que un valor del esquema cierre el tag <script> por accidente.
+const json = JSON.stringify(Astro.props.schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

@@ -6,16 +6,22 @@ import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
 import { SITE_TITLE, withBase } from '../consts';
 import { Font } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
+import { getBlogPostingSchema, getPersonSchema } from '../utils/structuredData';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	schema?: 'article' | 'person';
+	pubDate?: Date;
+	updatedDate?: Date;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, schema, pubDate, updatedDate } = Astro.props;
+const imageUrl = new URL(image.src, Astro.url).href;
 ---
 
 <!-- Global Metadata -->
@@ -46,9 +52,24 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={imageUrl} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <!-- verificacion google-->
 <meta name="google-site-verification" content="_9iPh99k2NCuimvb7iBIOGpTMvnOUWMGkecmm4jIDYg" />
+
+<!-- Datos estructurados -->
+{schema === 'article' && pubDate && (
+	<JsonLd
+		schema={getBlogPostingSchema({
+			title,
+			description,
+			imageUrl,
+			url: canonicalURL.href,
+			pubDate,
+			updatedDate,
+		})}
+	/>
+)}
+{schema === 'person' && <JsonLd schema={getPersonSchema(description)} />}
