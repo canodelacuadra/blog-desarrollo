@@ -3,7 +3,9 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Icon from '../components/Icon.astro';
+import ProjectCarousel from '../components/ProjectCarousel.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
+import { projects } from '../data/projects';
 ---
 
 <!doctype html>
@@ -11,6 +13,17 @@ import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				padding: 0;
+			}
+			.intro-content {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em 2em;
+			}
 			.starter-links {
 				display: grid;
 				gap: 0.6rem;
@@ -43,28 +56,33 @@ import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>Hola, bienvenido a mi blog</h1>
-			<p>
-				Aquí escribo sobre desarrollo web: Astro, HTML, CSS, JavaScript y todo lo que aprendo por el
-				camino. El objetivo es sencillo: explicar las cosas como me habría gustado que me las
-				explicaran a mí.
-			</p>
-			<p>
-				Este sitio está hecho con <a href="https://astro.build/">Astro</a> y se publica en GitHub
-				Pages mediante GitHub Actions. El contenido vive en <code>src/content/blog/</code> y se
-				escribe en Markdown o MDX.
-			</p>
-			<p>Si acabas de llegar, quizá te interese empezar por aquí:</p>
-			<ul class="starter-links">
-				<li><a href={withBase('/blog')}><Icon name="lucide:book-open" size={18} /> Leer todos los artículos</a></li>
-				<li><a href={withBase('/about')}><Icon name="lucide:user-round" size={18} /> Saber un poco más sobre mí</a></li>
-				<li><a href={withBase('/rss.xml')}><Icon name="lucide:rss" size={18} /> Suscribirme por RSS</a></li>
-			</ul>
-			<p>
-				Puedes editar esta página en <code>src/pages/index.astro</code> y personalizar el aspecto
-				del blog desde <code>src/styles/global.css</code>. Si tienes cualquier duda, la
-				documentación de Astro está en <a href="https://docs.astro.build/">docs.astro.build</a>.
-			</p>
+			<ProjectCarousel projects={projects} />
+
+			<div class="intro-content">
+				<h2>Hola, bienvenido a mi blog</h2>
+				<p>
+					Aquí escribo sobre desarrollo web: Astro, HTML, CSS, JavaScript y todo lo que aprendo por el
+					camino. El objetivo es sencillo: explicar las cosas como me habría gustado que me las
+					explicaran a mí.
+				</p>
+				<p>
+					Este sitio está hecho con <a href="https://astro.build/">Astro</a> y se publica en GitHub
+					Pages mediante GitHub Actions. El contenido vive en <code>src/content/blog/</code> y se
+					escribe en Markdown o MDX.
+				</p>
+				<p>Si acabas de llegar, quizá te interese empezar por aquí:</p>
+				<ul class="starter-links">
+					<li><a href={withBase('/proyectos')}><Icon name="lucide:briefcase" size={18} /> Ver todos los proyectos</a></li>
+					<li><a href={withBase('/blog')}><Icon name="lucide:book-open" size={18} /> Leer todos los artículos</a></li>
+					<li><a href={withBase('/about')}><Icon name="lucide:user-round" size={18} /> Saber un poco más sobre mí</a></li>
+					<li><a href={withBase('/rss.xml')}><Icon name="lucide:rss" size={18} /> Suscribirme por RSS</a></li>
+				</ul>
+				<p>
+					Puedes editar esta página en <code>src/pages/index.astro</code> y personalizar el aspecto
+					del blog desde <code>src/styles/global.css</code>. Si tienes cualquier duda, la
+					documentación de Astro está en <a href="https://docs.astro.build/">docs.astro.build</a>.
+				</p>
+			</div>
 		</main>
 		<Footer />
 	</body>

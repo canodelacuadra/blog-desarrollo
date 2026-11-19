@@ -1,0 +1,246 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE_TITLE } from '../../consts';
+import { projects } from '../../data/projects';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`Proyectos | ${SITE_TITLE}`}
+			description="Una selección de proyectos que he realizado: aplicaciones web, herramientas y experimentos."
+		/>
+		<style>
+			main {
+				width: 960px;
+			}
+			.page-head {
+				max-width: 34rem;
+				margin-bottom: 3rem;
+			}
+			.eyebrow {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				margin: 0 0 0.5rem;
+				color: var(--accent);
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+			.intro {
+				margin: 0;
+				color: rgb(var(--gray));
+				font-size: 0.95rem;
+			}
+			.timeline {
+				position: relative;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.timeline::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				width: 2px;
+				background: rgb(var(--gray-light));
+				transform: translateX(-50%);
+			}
+			.timeline li {
+				position: relative;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2.5rem;
+				margin-bottom: 2.5rem;
+			}
+			.timeline li:nth-child(odd) .card {
+				grid-column: 1;
+			}
+			.timeline li:nth-child(even) .card {
+				grid-column: 2;
+			}
+			.marker {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				transform: translateX(-50%);
+			}
+			.dot {
+				width: 14px;
+				height: 14px;
+				border: 3px solid white;
+				border-radius: 50%;
+				background: var(--accent);
+				box-shadow: 0 0 0 2px var(--accent);
+			}
+			.marker time {
+				margin-top: 0.35rem;
+				color: rgb(var(--gray));
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				white-space: nowrap;
+				text-transform: uppercase;
+			}
+			.card {
+				overflow: hidden;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 12px;
+				background: white;
+				box-shadow: 0 2px 6px rgba(var(--gray), 12%);
+			}
+			.card img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				border-radius: 0;
+				object-fit: cover;
+			}
+			.card-body {
+				padding: 1rem 1.2rem 1.25rem;
+			}
+			.card-date {
+				display: none;
+			}
+			.card-body h2 {
+				margin: 0 0 0.5rem;
+				font-size: 1.35rem;
+			}
+			.card-body p {
+				margin-bottom: 0;
+				font-size: 0.92rem;
+				line-height: 1.55;
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem;
+				margin: 0.9rem 0;
+				padding: 0;
+				list-style: none;
+			}
+			.tags li {
+				padding: 0.15rem 0.6rem;
+				border-radius: 999px;
+				background: var(--accent-soft);
+				color: var(--accent-dark);
+				font-size: 0.72rem;
+				font-weight: 600;
+			}
+			.links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1.1rem;
+			}
+			.links a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.9rem;
+				text-decoration: none;
+			}
+			@media (max-width: 720px) {
+				main {
+					width: calc(100% - 1em);
+				}
+				.page-head {
+					margin-bottom: 2rem;
+				}
+				.timeline::before {
+					left: 11px;
+				}
+				.timeline li {
+					display: block;
+					padding-left: 2.5rem;
+					margin-bottom: 2rem;
+				}
+				.marker {
+					left: 4px;
+					flex-direction: row;
+					gap: 0.5rem;
+					transform: none;
+				}
+				.marker time {
+					display: none;
+				}
+				.card {
+					margin-top: 1.9rem;
+				}
+				.card-date {
+					display: block;
+					margin-bottom: 0.3rem;
+					color: rgb(var(--gray));
+					font-size: 0.72rem;
+					font-weight: 700;
+					letter-spacing: 0.06em;
+					text-transform: uppercase;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-head">
+				<p class="eyebrow"><Icon name="lucide:briefcase" size={16} /> Portafolio</p>
+				<h1>Proyectos</h1>
+				<p class="intro">
+					Una selección de lo que he ido construyendo: aplicaciones, herramientas y experimentos.
+					Cada tarjeta enlaza con el código o con la demo cuando está disponible.
+				</p>
+			</header>
+
+			<ol class="timeline">
+				{
+					projects.map((project) => (
+						<li>
+							<div class="marker">
+								<span class="dot"></span>
+								<time datetime={project.order}>{project.date}</time>
+							</div>
+							<article class="card">
+								<Image src={project.image} alt={project.title} width={800} height={450} loading="lazy" />
+								<div class="card-body">
+									<time class="card-date" datetime={project.order}>{project.date}</time>
+									<h2>{project.title}</h2>
+									<p>{project.description}</p>
+									<ul class="tags" aria-label="Tecnologías utilizadas">
+										{project.tags.map((tag) => (
+											<li>{tag}</li>
+										))}
+									</ul>
+									<div class="links">
+										{project.demoUrl && (
+											<a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+												<Icon name="lucide:external-link" size={16} /> Ver demo
+											</a>
+										)}
+										{project.repoUrl && (
+											<a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+												<Icon name="lucide:github" size={16} /> Ver código
+											</a>
+										)}
+									</div>
+								</div>
+							</article>
+						</li>
+					))
+				}
+			</ol>
+		</main>
+		<Footer />
+	</body>
+</html>
